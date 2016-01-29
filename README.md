@@ -20,6 +20,16 @@ to you.
 
 Grab some MOO Jukebox cards and find us to try it out!
 
+
+## Usage
+
+Grab Android Studio and Processing, get the NFC Reader app on your phone and make sure you point it to the right
+IP address and port that spiroID is running on (Tweak line ~370 in `TagViewer.java`). You will also need to set up
+a Twitter app and dump the access tokens in the relavant section in the Processing app.
+
+Please note that zero effort has gone into making this user friendly since it is but a hack so Here Be Dragons!
+
+
 ## Contact
 
 Ping @OmerK, @jonsimpson and @darachennis on Twitter.
