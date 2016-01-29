@@ -6,4 +6,6 @@
     <string name="menu_main_clear_title">Clear all</string>
     <string name="nfc_disabled">NFC is not enabled. Please go to the wireless settings to enable it.</string>
     <string name="no_nfc">No NFC found on this device</string>
+    <string name="twitter_handle">\nEnter your Twitter handle:</string>
+    <string name="usage">\n...and scan your NFC card.\n\nSpiroBot will send you a custom generated spirograph on Twitter!</string>
 </resources>

@@ -50,8 +50,12 @@ import android.nfc.tech.MifareUltralight;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.Settings;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.json.JSONObject;
 
 /**
  * An {@link Activity} which handles a broadcast of a new tag that the device just discovered.
@@ -344,8 +348,15 @@ public class TagViewer extends Activity {
 
     // magic happens here
     public void processReadTag(NdefMessage ndef){
+
         final String tag_content = new String(ndef.getRecords()[0].getPayload());
+
+        //setContentView(R.layout.tag_viewer); //?
+        EditText twitterHandleEditText = (EditText) findViewById(R.id.txtTwitterHandle);
+        final String twitter_handle = twitterHandleEditText.getText().toString();
+
         Log.i(">>> NDEF:", tag_content);
+        Log.i(">>> TWITTER:", twitter_handle); // THIS DOESN'T GET PRINTED?!
 
         // this doesn't seem like the proper way to do this #yolo
         Thread thread = new Thread(new Runnable(){
@@ -353,24 +364,30 @@ public class TagViewer extends Activity {
             public void run() {
                 try {
                     // build request
-                    URL url = new URL("http://httpbin.org/post");
+                    URL url = new URL("http://10.2.2.147:8666/");
+                    //URL url = new URL("http://httpbin.org/post");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-type", "application/json");
                     conn.setDoInput(true);
                     conn.setDoOutput(true);
 
+                    /*
                     // create POST body and send it over
                     Uri.Builder builder = new Uri.Builder()
                             .appendQueryParameter("ndef", tag_content)
                             .appendQueryParameter("twitter_handle", "omerk");
                     String query = builder.build().getEncodedQuery();
-
+*/
                     OutputStream os = conn.getOutputStream();
-                    BufferedWriter writer = new BufferedWriter(
-                            new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(query);
-                    writer.flush();
-                    writer.close();
+
+                    //BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                    JSONObject json = new JSONObject();
+                    json.put("ndef", tag_content);
+                    json.put("twitter", twitter_handle);
+
+                    os.write(json.toString().getBytes("UTF-8"));
+                    os.flush();
                     os.close();
 
                     conn.connect();
@@ -382,7 +399,6 @@ public class TagViewer extends Activity {
                     String r = s.hasNext() ? s.next() : "";
                     Log.i(">>> ResponseBody: ", r);
                 } catch (Exception e) {
-                    Log.i(">>> OOPS: ", e.toString());
                     Log.i(">>> OOPS: ", e.toString());
                 }
             }

@@ -15,9 +15,12 @@ public final class R {
     }
     public static final class id {
         public static final int list=0x7f060001;
-        public static final int menu_main_clear=0x7f060003;
+        public static final int menu_main_clear=0x7f060006;
         public static final int tag_viewer_text=0x7f060002;
         public static final int text=0x7f060000;
+        public static final int textView=0x7f060003;
+        public static final int textView2=0x7f060005;
+        public static final int txtTwitterHandle=0x7f060004;
     }
     public static final class layout {
         public static final int tag_divider=0x7f030000;
@@ -34,5 +37,7 @@ public final class R {
         public static final int menu_main_clear_title=0x7f040003;
         public static final int nfc_disabled=0x7f040004;
         public static final int no_nfc=0x7f040005;
+        public static final int twitter_handle=0x7f040006;
+        public static final int usage=0x7f040007;
     }
 }
