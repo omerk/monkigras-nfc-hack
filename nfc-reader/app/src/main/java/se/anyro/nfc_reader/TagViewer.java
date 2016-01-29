@@ -16,14 +16,24 @@
  */
 package se.anyro.nfc_reader;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.net.Uri;
 import android.util.Log;
+import android.util.Pair;
 import android.view.*;
 import se.anyro.nfc_reader.record.ParsedNdefRecord;
 import android.app.Activity;
@@ -334,10 +344,52 @@ public class TagViewer extends Activity {
 
     // magic happens here
     public void processReadTag(NdefMessage ndef){
-        String tag_content = new String(ndef.getRecords()[0].getPayload());
-        Log.i(">> tag content:", tag_content);
+        final String tag_content = new String(ndef.getRecords()[0].getPayload());
+        Log.i(">>> NDEF:", tag_content);
 
-        // TODO: Send this over to spiroID over some form of network socket/HTTP request etc.
+        // this doesn't seem like the proper way to do this #yolo
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    // build request
+                    URL url = new URL("http://httpbin.org/post");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
+
+                    // create POST body and send it over
+                    Uri.Builder builder = new Uri.Builder()
+                            .appendQueryParameter("ndef", tag_content)
+                            .appendQueryParameter("twitter_handle", "omerk");
+                    String query = builder.build().getEncodedQuery();
+
+                    OutputStream os = conn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(query);
+                    writer.flush();
+                    writer.close();
+                    os.close();
+
+                    conn.connect();
+
+                    // read the response
+                    Log.i(">>> ResponseCode: ", "" + conn.getResponseCode());
+                    InputStream in = new BufferedInputStream(conn.getInputStream());
+                    java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
+                    String r = s.hasNext() ? s.next() : "";
+                    Log.i(">>> ResponseBody: ", r);
+                } catch (Exception e) {
+                    Log.i(">>> OOPS: ", e.toString());
+                    Log.i(">>> OOPS: ", e.toString());
+                }
+            }
+        });
+
+        thread.start();
+
     }
 
 }
