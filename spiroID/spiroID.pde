@@ -7,7 +7,6 @@
  *
  *  Currently the only way to input the id is to manually change the seed
  **/
-import processing.serial.*;
 import processing.pdf.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -26,27 +25,16 @@ String IMAGE_ROOT = "spirals/";
 
 Spiro[] spirals;
 Printer printer;
-RFIDHandler rfid;
-Serial port;
+HTTPHandler http;
 
 void setup() 
 {
   size(800, 600);
   // Initialise objects here to avoid null pointer exceptions
- 
 
- 
-  rfid = new RFIDHandler(this);
-  println(Serial.list());
-  String portName = Serial.list()[0];
-  port = new Serial(this, portName, 57600);
-  port.clear();
-  port.buffer(32);
-  port.bufferUntil('\n'); // should make serialEvent be called
-  
+  http = new HTTPHandler(this);
   printer = new Printer();
   spirals =  new Spiro[nmax];
-  noLoop();
 }
 
 /**
@@ -69,45 +57,13 @@ void createSpiroID(int id)
     redraw();
 }
 
-/**
- *  Handles the key presses.
- * 
- *  Spacebar  -  Creates a new spiroID with an id plus one of the previous. For testing/faking a spiroID only.
- *  'p' key  -  Prints the spiroID. (If it has been created and not printed yet)
- *  'r' key  -  Enables retry of printing if first attempt fails.
- *  'g' key  -  Gets the ID from the RFID reader. (If the RFIDHandler didn't work automatically.)
- *  'B' key  -  Resets the spiroID to the blank, starting screen.
- */
-void keyPressed()
-{ 
-  System.out.println(keyCode);
-  if (keyCode == 32)                                            // Spacebar
-  {
-    createSpiroID(id + 1);
-  } 
-  else if(keyCode == 112 && spiroIDCreated && !spiroIDPrinted) { // 'p' key
-    saveFile();
-    printer.print("spiroID-"+id+".png");
-    spiroIDPrinted = true;
-  } 
-  else if(keyCode == 113 && spiroIDCreated && spiroIDPrinted) {  // 'r' key
-    spiroIDPrinted = false;
-  }
-//  else if(keyCode == 114) {                                      // 'g' key
-//    createSpiroID(rfid.getID());
-//  }
-  else if(keyCode == 66) {                                      // 'B' key
-    spiroIDInitialised = false;
-    rfid.reset();
-    redraw();
-  } 
-}
-
 void saveFile()
 {
     String filename = new String(IMAGE_ROOT + "spiroID-"+id+".png");
     saveFrame(filename); 
 }
+
+
 
 /**
  *  Draws the spiroID and saves it in a file "spiroID-##.png", where ## is
@@ -115,6 +71,8 @@ void saveFile()
  **/
 void draw() 
 {
+    http.handleHttpRequest();
+    
     //Draw the background and border.
     background(255);
     fill(0);
@@ -148,15 +106,10 @@ void drawText()
     font = createFont("georgia.ttf", 52);
     textFont(font, 52);
     fill(255);
-    text("spiroID", 10, 49);
+    text("MonkiSpiroNfcThing", 10, 49);
 
     font = createFont("georgia.ttf", 28);
     textFont(font, 28);
     fill(255);
-    text("tinkersoc.org", width-174, height - 18);
-  }
-
-void serialEvent(Serial serial)
-{
-  rfid.serialProcess(serial);
+    text("Monkigras 2016", width-200, height - 18);
 }
