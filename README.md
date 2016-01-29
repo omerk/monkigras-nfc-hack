@@ -8,7 +8,7 @@ A quick beer and cheese filled hack from @omerk, @exo and @darach, Monki Gras 20
 
 Based on nfc-reader by @nadam and spiroID by Matt Medland, Chris Roberts and co. at TinkerSoc.
 
-Shoutout to Kernel Brewery and Raw Cheese Power for the lucid cheese dreams and the will power to hack.
+Shoutout to Kernel Brewery and Raw Cheese Power for the lucid cheese dreams and the encouragement to hack.
 
 
 ## How?
