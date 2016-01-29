@@ -117,5 +117,124 @@
                 }
             }
         ]
+    },
+    {
+        "outputFile": "C:\\Users\\Omer\\Desktop\\monkigras-nfc-hack\\nfc-reader\\app\\build\\intermediates\\res\\merged\\debug\\values-fr\\values-fr.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 48,
+                    "endOffset": 99
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\Desktop\\monkigras-nfc-hack\\nfc-reader\\app\\src\\main\\res\\values-fr\\strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 259,
+                        "endColumn": 48,
+                        "endOffset": 303
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 104,
+                    "endColumn": 40,
+                    "endOffset": 140
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\Desktop\\monkigras-nfc-hack\\nfc-reader\\app\\src\\main\\res\\values-fr\\strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 1011,
+                        "endColumn": 40,
+                        "endOffset": 1047
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 145,
+                    "endColumn": 700,
+                    "endOffset": 841
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\Desktop\\monkigras-nfc-hack\\nfc-reader\\app\\src\\main\\res\\values-fr\\strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 309,
+                        "endColumn": 700,
+                        "endOffset": 1005
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 846,
+                    "endColumn": 62,
+                    "endOffset": 904
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\Desktop\\monkigras-nfc-hack\\nfc-reader\\app\\src\\main\\res\\values-fr\\strings.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 1257,
+                        "endColumn": 62,
+                        "endOffset": 1315
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 909,
+                    "endColumn": 131,
+                    "endOffset": 1036
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\Desktop\\monkigras-nfc-hack\\nfc-reader\\app\\src\\main\\res\\values-fr\\strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 1124,
+                        "endColumn": 131,
+                        "endOffset": 1251
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 1041,
+                    "endColumn": 69,
+                    "endOffset": 1106
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\Desktop\\monkigras-nfc-hack\\nfc-reader\\app\\src\\main\\res\\values-fr\\strings.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 1053,
+                        "endColumn": 69,
+                        "endOffset": 1118
+                    }
+                }
+            }
+        ]
     }
 ]
