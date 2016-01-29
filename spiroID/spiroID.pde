@@ -15,8 +15,6 @@ import javax.swing.*;
 import java.awt.print.*;
 import javax.imageio.ImageIO;
 
-int width=800;
-int height=600;
 int n0;
 int nmax=12;
 int id = -2147483648; //Seed creation, when the RFID specs are known this will be the gathered number.
@@ -24,7 +22,7 @@ PFont font;
 boolean spiroIDInitialised = false;
 boolean spiroIDPrinted = false;
 boolean spiroIDCreated = false;
-String IMAGE_ROOT = "./spirals/";
+String IMAGE_ROOT = "spirals/";
 
 Spiro[] spirals;
 Printer printer;
@@ -33,7 +31,7 @@ Serial port;
 
 void setup() 
 {
-  size(width, height);
+  size(800, 600);
   // Initialise objects here to avoid null pointer exceptions
  
 

@@ -1,7 +1,7 @@
 class Printer implements Printable {
 
   File imageFile;
-  BufferedImage bufferedImage;
+  PImage bufferedImage;
   PageFormat a5Page;
 
   public Printer()
@@ -16,14 +16,11 @@ class Printer implements Printable {
 
   public void print(String fileName)
   {
-    imageFile = new File(IMAGE_ROOT + fileName);
-
-    //bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     try {
-      bufferedImage = ImageIO.read(imageFile);
+      bufferedImage = loadImage(IMAGE_ROOT + fileName);
     } 
-    catch (IOException e) {
-      System.out.println("File not found...");
+    catch (Exception e) {
+      System.out.println("File can not be opened...");
     }
 
     PrinterJob job = PrinterJob.getPrinterJob();
@@ -61,11 +58,11 @@ class Printer implements Printable {
     g2d.translate(pf.getImageableX(), pf.getImageableY());
 
     /* Now we perform our rendering */
-    g.drawImage(bufferedImage, 0, 0, null);
+    //FIXME: Actually print image, as it is a blank page atm.
+    //g.drawImage(bufferedImage, 0, 0, null);
 
     /* tell the caller that this page is part of the printed document */
     return PAGE_EXISTS;
   }
 
 }
-
