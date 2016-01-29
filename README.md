@@ -30,6 +30,14 @@ a Twitter app and dump the access tokens in the relavant section in the Processi
 Please note that zero effort has gone into making this user friendly since it is but a hack so Here Be Dragons!
 
 
+## License
+
+NFC Reader is Copyright (C) 2011 Adam Nybäck, released under Apache License Version 2.0
+
+Everything else in this repo is released under The Beerware License (What else would we use, srsly).
+
+
+
 ## Contact
 
 Ping @OmerK, @jonsimpson and @darachennis on Twitter.
