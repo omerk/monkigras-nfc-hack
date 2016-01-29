@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout\\tag_divider.xml",
+        "source": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\src\\main\\res\\layout\\tag_divider.xml"
+    },
+    {
+        "merged": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout\\tag_text.xml",
+        "source": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\src\\main\\res\\layout\\tag_text.xml"
+    },
+    {
+        "merged": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout\\tag_viewer.xml",
+        "source": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\src\\main\\res\\layout\\tag_viewer.xml"
+    }
+]

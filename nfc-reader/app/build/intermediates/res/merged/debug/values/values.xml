@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NFC Reader</string>
+    <string name="error">Error</string>
+    <string name="intro_message">Monkigras 2016 Moo NFC Card Hack. Based on https://github.com/nadam/nfc-reader</string>
+    <string name="menu_main_clear_title">Clear all</string>
+    <string name="nfc_disabled">NFC is not enabled. Please go to the wireless settings to enable it.</string>
+    <string name="no_nfc">No NFC found on this device</string>
+</resources>

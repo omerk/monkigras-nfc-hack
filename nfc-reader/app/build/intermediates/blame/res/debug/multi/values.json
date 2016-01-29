@@ -1,0 +1,86 @@
+[
+    {
+        "outputFile": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 47,
+                    "endOffset": 98
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\src\\main\\res\\values\\strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 103,
+                    "endColumn": 39,
+                    "endOffset": 138
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\src\\main\\res\\values\\strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 143,
+                    "endColumn": 120,
+                    "endOffset": 259
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 737,
+                        "endColumn": 120,
+                        "endOffset": 853
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 264,
+                    "endColumn": 59,
+                    "endOffset": 319
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\src\\main\\res\\values\\strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 324,
+                    "endColumn": 109,
+                    "endOffset": 429
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\src\\main\\res\\values\\strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 434,
+                    "endColumn": 62,
+                    "endOffset": 492
+                },
+                "from": {
+                    "file": "C:\\Users\\Omer\\StudioProjects\\nfc-reader\\app\\src\\main\\res\\values\\strings.xml"
+                }
+            }
+        ]
+    }
+]
