@@ -71,11 +71,17 @@ class HTTPHandler {
         } else if ( input.indexOf(HTTP_POST_REQUEST) == 0)
         {
           client.write(HTTP_HTML_HEADER);
-          String data = input.substring(input.indexOf("urlencoded")+10).replace("\"",""); // HACK out data
-          JSONObject json = JSONObject.parse(data);
+          String data = input.substring(input.indexOf("{")); // HACK out data
+          System.out.println(data);
           
-          client.write("<html><head><title>Beep boop</title><body><h3>" + "NDEF: " + json.getString("ndef") + "TWID: " + json.getString("twitter_handle") + "</title></head></html>");
-
+          JSONObject json = JSONObject.parse(data);
+          System.out.println(json.toString());
+          
+          client.write("<html><head><title>Beep boop</title><body><h3>" + "NDEF: " + json.getString("ndef") + "TWID: " + json.getString("twitter") + "</title></head></html>");
+          System.out.println(json.getString("ndef"));
+          System.out.println(json.getString("twitter"));
+          
+          
           // HACK: convert data to twitter request and spiro callback
           createSpiroID((int)random(100));
           
@@ -89,5 +95,3 @@ class HTTPHandler {
     createSpiroID(id);
   }
 }
-
-
