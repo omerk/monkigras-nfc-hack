@@ -21,11 +21,12 @@ PFont font;
 boolean spiroIDInitialised = false;
 boolean spiroIDPrinted = false;
 boolean spiroIDCreated = false;
-String IMAGE_ROOT = "spirals/";
+String IMAGE_ROOT = "C:/tmp/";
 
 Spiro[] spirals;
 Printer printer;
 HTTPHandler http;
+TwitterPoster twitter;
 
 void setup() 
 {
@@ -35,18 +36,21 @@ void setup()
   http = new HTTPHandler(this);
   printer = new Printer();
   spirals =  new Spiro[nmax];
+  twitter = new TwitterPoster();
 }
 
 /**
  *  Generates a spiroID, and gets it drawn.
  **/
-void createSpiroID(int id)
+String createSpiroID(int id)
 {
+  println("Creating spiro for id: " + id);
     spiroIDInitialised = true;
     spiroIDCreated = false;
     spiroIDPrinted = false;
     this.id = id;
     // background(0); // why?
+    
     randomSeed(id);
     n0 = 1 + int(random(2,nmax)); // Number of spirals
     for (int i=0; i < n0; i++)
@@ -55,14 +59,12 @@ void createSpiroID(int id)
     }
     // Add "press P for a printout"?
     redraw();
-}
-
-void saveFile()
-{
+    println("Generation finished");
     String filename = new String(IMAGE_ROOT + "spiroID-"+id+".png");
-    saveFrame(filename); 
+    saveFrame(filename);
+    println("Writing frame");
+    return filename;
 }
-
 
 
 /**
@@ -77,7 +79,6 @@ void draw()
     background(255);
     fill(0);
     rect(2,2,width-4,height-4);
-    String filename = new String(IMAGE_ROOT + "spiroID-"+id+".png");
     
     //Check that the spiral has been initialised
     if(spiroIDInitialised) {
@@ -88,8 +89,7 @@ void draw()
       }
       drawText();
       spiroIDCreated = true;
-      println("Your spiroID is ready! (#" + id + ")");
-    } 
+    }
     else {
       drawText();
       //Draw the error text.
@@ -103,13 +103,13 @@ void draw()
 void drawText()
   {
     //Draw the text.
-    font = createFont("georgia.ttf", 52);
-    textFont(font, 52);
-    fill(255);
-    text("MonkiSpiroNfcThing", 10, 49);
+    //font = createFont("georgia.ttf", 52);
+    //textFont(font, 52);
+    //fill(255);
+    //text("MonkiSpiroNfcThing", 10, 49);
 
     font = createFont("georgia.ttf", 28);
     textFont(font, 28);
     fill(255);
-    text("Monkigras 2016", width-200, height - 18);
+    text("Monki Gras 2016", width-220, height - 18);
 }

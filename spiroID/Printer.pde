@@ -33,7 +33,7 @@ class Printer implements Printable {
     RepaintManager currentManager = RepaintManager.currentManager(null);
     currentManager.setDoubleBufferingEnabled(false); 
     
-    boolean ok = job.printDialog();
+    //boolean ok = job.printDialog();
     //if (ok) {
     try {
       job.print();

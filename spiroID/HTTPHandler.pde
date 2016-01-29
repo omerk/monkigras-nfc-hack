@@ -8,24 +8,6 @@ import processing.net.*;
 String HTTP_GET_REQUEST = "GET /";
 String HTTP_POST_REQUEST = "POST /";
 String HTTP_HTML_HEADER = "HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n";
-String HTTP_CSS_HEADER = "HTTP/1.0 200 OK\r\nContent-Type: text/css\r\n\r\n";
-String HTTP_GIF_HEADER = "HTTP/1.0 200 OK\r\nContent-Type: image/gif\r\n\r\n";
-
- String INDEX_CSS = "@import url(http://fonts.googleapis.com/css?family=Advent+Pro:100);\r\n" +
- "html {\n" +
- "  background:  url(trippycat.gif) no-repeat center center fixed;\r\n" +
- "  background-size: cover;\r\n" +
- "}\r\n" +
- "h1{\r\n" +
- "  font-family: 'Advent Pro', sans-serif;\r\n" +
- "  font-size: 3em;\r\n" +
- "  margin: .2em .5em;\r\n" +
- "  color: rgba(200,100,100, 0.5);\r\n" +
- "}\r\n" +
- "body {\r\n" +
- "    height: 100%;\r\n" +
- "}\r\n";
-
 
 class HTTPHandler {
 
@@ -44,48 +26,41 @@ class HTTPHandler {
     server = new Server(parent, 8666);
   }
 
-  public int getID()
-  {
-    return id;
-  }
-  
   public void handleHttpRequest()
-{
+  {
     // Receive data from client
     client = server.available();
     
     if (client != null) {
-        input = client.readString().trim();    
-        if ( input.indexOf("GET /trippycat.gif") == 0 ) {
-          client.write(HTTP_GIF_HEADER);
-          client.write(loadBytes("trippycat.gif"));
-          client.stop();    
-        } else if ( input.indexOf("GET /index.css") == 0 ) {
-          client.write(HTTP_CSS_HEADER);
-          client.write(loadBytes("index.css"));
-          client.stop();    
-        } else if (input.indexOf(HTTP_GET_REQUEST) == 0) {
-          client.write(HTTP_HTML_HEADER);
-          client.write(loadBytes("index.html"));
-          client.stop();
-        } else if ( input.indexOf(HTTP_POST_REQUEST) == 0)
-        {
-          client.write(HTTP_HTML_HEADER);
-          String data = input.substring(input.indexOf("{")); // HACK out data
-          System.out.println(data);
-          
-          JSONObject json = JSONObject.parse(data);
-          System.out.println(json.toString());
-          
-          client.write("<html><head><title>Beep boop</title><body><h3>" + "NDEF: " + json.getString("ndef") + "TWID: " + json.getString("twitter") + "</title></head></html>");
-          System.out.println(json.getString("ndef"));
-          System.out.println(json.getString("twitter"));
-          
-          
-          // HACK: convert data to twitter request and spiro callback
-          createSpiroID((int)random(100));
-          
-          client.stop();
+        input = client.readString().trim();
+        if ( input.indexOf(HTTP_POST_REQUEST) == 0) { 
+        //input = "{\"twitter\": \"jonsimpson\",\"ndef\": \"\u0001moo.me/a/VpqaORqFM1RDJpSRRNMPoB\"}";
+        String data = input.substring(input.indexOf("{")); // HACK out data
+        System.out.println(data);
+        
+        JSONObject json = JSONObject.parse(data);
+        System.out.println(json.toString());
+        
+        int id = Math.abs(json.getString("ndef").replace("\u0001moo.me/a/", "").hashCode());
+        String twitterHandle = json.getString("twitter");
+        
+        if (!twitterHandle.startsWith("@")){
+          twitterHandle = "@" + twitterHandle;
+        }
+        
+        client.write(HTTP_HTML_HEADER);
+        client.write("<html><head><title>Beep boop</title><body><h3>" + "NDEF: " + id + "TWID: " + json.getString("twitter") + "</title></head></html>");
+        System.out.println(json.getString("ndef"));
+        System.out.println(json.getString("twitter"));
+        
+        // HACK: convert data to twitter request and spiro callback
+        String filename = createSpiroID(id);
+        
+        String statusText = "Hey " + twitterHandle + " here's your spiro";
+        println("Twitter post: " + statusText);
+        //twitter.post(statusText, filename);
+        
+        client.stop();
         }
     }
 }
