@@ -58,7 +58,7 @@ class HTTPHandler {
         
         String statusText = "Hey " + twitterHandle + " here's your spiro";
         println("Twitter post: " + statusText);
-        //twitter.post(statusText, filename);
+        twitter.post(statusText, filename);
         
         client.stop();
         }

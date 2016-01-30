@@ -58,6 +58,7 @@ String createSpiroID(int id)
       spirals[i] = new Spiro(width, height, id + (29 * i) + i);
     }
     // Add "press P for a printout"?
+    draw();
     redraw();
     println("Generation finished");
     String filename = new String(IMAGE_ROOT + "spiroID-"+id+".png");
